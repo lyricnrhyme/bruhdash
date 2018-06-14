@@ -89,8 +89,8 @@ global.bruhdash = {
 
   // creates a slice of an array with n elements taken from the beginning
   take: function (arr, n) {
-    console.log(arr)
-    console.log(n);
+    // console.log(arr)
+    // console.log(n);
     var newArr = [];
     if (typeof n == "number") {
       for (var i=0; i<n; i++) {
@@ -106,19 +106,62 @@ global.bruhdash = {
   },
 
   // creates a slice of an array with n elements taken from the end
-  takeRight: function () {
-
+  takeRight: function (arr, n) {
+    // console.log(arr);
+    // console.log(n);
+    var newArr = [];
+    if (typeof n == "number") {
+      if (n == 0) {
+        return newArr;
+      } else if (n > arr.length) {
+        return arr;
+      } else {
+        for (var i=arr.length-1; i>=n-1; i--) {
+          // console.log(arr[i]);
+          newArr.unshift(arr[i]);
+        }
+        return newArr;
+      }
+    }
+    newArr.push(arr[arr.length-1]);
+    return newArr;
   },
 
   // fills elements of array with specified value from the start index
   // up to but not including the end index
-  fill: function() {
-
+  fill: function hello(arr, num, start, end) {
+      // if one of the numbers are not there,
+      if(start === undefined || end === undefined){
+        var origLength = arr.length;
+      // let origLength = original length of arr and delete the characters in arr
+      // and replace with one num
+        arr.splice(0, arr.length, num);
+      //fill the rest of orig length with num
+        for (var i=0;i<origLength-1;i++){
+          arr.splice(0, 0, num)
+        }
+        return arr;
+      }else{
+        arr.splice(start, end-1, num);
+        for (var i=0;i<end-start-1;i++){
+          arr.splice(start, 0, num)
+        }
+        return arr;
+    }
   },
 
   // removes all given values from an array
-  pull: function () {
-
+  pull: function (arr, val1, val2) {
+    console.log(arr);
+    console.log(val1);
+    console.log(val2);
+    var newArr = []
+    for (var i=0; i<arr.length; i++) {
+      if (arr[i] != val1 && arr[i] != val2) {
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
   },
 
   // removes elements of an array corresponding to the given indices
