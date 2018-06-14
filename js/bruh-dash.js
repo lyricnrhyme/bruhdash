@@ -181,7 +181,7 @@ global.bruhdash = {
 
   // creates an array excluding all the specified values
   without: function(arr, a, b) {
-    console.log(arr,a,b);
+    // console.log(arr,a,b);
     var newArr = []
     for (var i=0; i<arr.length; i++) {
       if (arr[i] != a && arr[i] != b) {
@@ -192,8 +192,10 @@ global.bruhdash = {
   },
 
   // returns an array with specified values excluded
-  difference: function() {
-
+  difference: function(arr1, arr2) {
+    // 
+    var newArr = arr1.filter(num => !arr2.includes(num));
+    return newArr;
   },
 
   /*******************
