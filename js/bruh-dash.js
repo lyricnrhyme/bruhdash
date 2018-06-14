@@ -31,18 +31,28 @@ global.bruhdash = {
   },
 
   // returns the index of the first matching element from right to left
-  lastIndexOf: function () {
+  lastIndexOf: function (arr, num) {
+    for (var i=arr.length-1; i>=0; i--) {
+      if (arr[i] === num) {
+        return i;
+      }
+    }
+    return -1;
 
   },
 
   // returns an array with all elements except for the last element
-  initial: function () {
-
+  initial: function (arr) {
+    var newArr = [];
+    for (var i=0; i<arr.length-1; i++) {
+      newArr.push(arr[i]);
+    }
+    return newArr;
   },
   
   // returns an array with all falsey values removed
-  compact: function() {
-
+  compact: function(arr) {
+    return arr.filter(Boolean);
   },
 
   // creates a slice of an array from the start index up to but not including the end index
