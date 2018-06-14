@@ -180,8 +180,15 @@ global.bruhdash = {
   },
 
   // creates an array excluding all the specified values
-  without: function() {
-
+  without: function(arr, a, b) {
+    console.log(arr,a,b);
+    var newArr = []
+    for (var i=0; i<arr.length; i++) {
+      if (arr[i] != a && arr[i] != b) {
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
   },
 
   // returns an array with specified values excluded
