@@ -204,7 +204,7 @@ global.bruhdash = {
 
   // creates an array of grouped elements
   zip: function (arr1, arr2) {
-    console.log(arr1, arr2);
+    // console.log(arr1, arr2);
     var newArr = [];
     var innerArr = [];
     for (var i=0; i<arr1.length; i++) {
@@ -217,8 +217,40 @@ global.bruhdash = {
   },
 
   // creates an array of grouped elements in their pre-zip configuration
-  unzip: function () {
-
+  unzip: function (arr) {
+    // console.log(arr);
+    //cry
+    // var newArr = [];
+    // var innerArr1 = [];
+    // var innerArr2 = [];
+    // for (var i=0; i<arr.length; i++) {
+    //   innerArr1.push(arr[i][0]);
+    //   innerArr2.push(arr[i][1]);
+    // }
+    // newArr.push(innerArr1);
+    // newArr.push(innerArr2);
+    // return newArr;
+    // // console.log(newArr);
+    // // works on only this test instance
+    // OR
+    var originalArr = [];
+    var resultArr = [];
+    for(var i=0;i<arr.length;i++){
+      originalArr.push(arr[i]);
+    }
+    while((originalArr[0].length)>0){
+      var testArr = [];
+      //console.log(originalArr);
+      for(var i=0;i<originalArr.length;i++){
+        var toPush = originalArr[i].shift();
+        //console.log(toPush);
+        testArr.push(toPush);
+        //console.log(testArr);
+      }
+      resultArr.push(testArr);
+    }
+    //console.log(originalArr.length);
+    return resultArr;
   },
 
   // creates an array of elements into groups of length of specified size
