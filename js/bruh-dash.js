@@ -20,8 +20,14 @@ global.bruhdash = {
   },
 
   // returns the index of the first matching element from left to right
-  indexOf: function () {
-
+  indexOf: function (arr, num) {
+    for (var i=0; i<arr.length; i++) {
+      if (arr[i] === num) {
+        // console.log(i);
+        return i;
+      }
+    }
+    return -1; 
   },
 
   // returns the index of the first matching element from right to left
