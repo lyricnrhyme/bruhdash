@@ -152,9 +152,9 @@ global.bruhdash = {
 
   // removes all given values from an array
   pull: function (arr, val1, val2) {
-    console.log(arr);
-    console.log(val1);
-    console.log(val2);
+    // console.log(arr);
+    // console.log(val1);
+    // console.log(val2);
     var newArr = []
     for (var i=0; i<arr.length; i++) {
       if (arr[i] != val1 && arr[i] != val2) {
@@ -165,8 +165,18 @@ global.bruhdash = {
   },
 
   // removes elements of an array corresponding to the given indices
-  pullAt: function () {
-
+  pullAt: function (arr1, arr2) {
+    // console.log(arr1, arr2);
+    var newArr = []
+    for (var i=0; i<arr1.length; i++) {
+      for (var j=0; j<arr2.length; j++) {
+        // console.log(arr2[j]);
+        if (arr2[j] == i) {
+          newArr.push(arr1[i])
+        }
+      }
+    }
+    return newArr;
   },
 
   // creates an array excluding all the specified values
