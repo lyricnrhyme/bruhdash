@@ -67,8 +67,8 @@ global.bruhdash = {
         // newArr.push(arr[i]);
         arr.shift();
       }
-      console.log(arr, n);
-      console.log(typeof n);
+      // console.log(arr, n);
+      // console.log(typeof n);
       return arr;
     }
     arr.shift();
@@ -88,8 +88,21 @@ global.bruhdash = {
   },
 
   // creates a slice of an array with n elements taken from the beginning
-  take: function () {
-
+  take: function (arr, n) {
+    console.log(arr)
+    console.log(n);
+    var newArr = [];
+    if (typeof n == "number") {
+      for (var i=0; i<n; i++) {
+        if (n > arr.length) {
+          return arr;
+        } else {
+          newArr.push(arr[i])
+        }
+      }
+    return newArr;
+    }
+    return arr.slice(0,1);
   },
 
   // creates a slice of an array with n elements taken from the end
