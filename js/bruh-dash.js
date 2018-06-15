@@ -291,35 +291,35 @@ global.bruhdash = {
 
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
-  forEach: function(arr, funk) {
+  forEach: function(arrObj, funk) {
     // console.log(arr, funk);
-    if (Array.isArray(arr) === true) {
-      for (var i=0; i<arr.length; i++) {
-        var result = funk(arr[i],1);
+    if (Array.isArray(arrObj) === true) {
+      for (var i=0; i<arrObj.length; i++) {
+        var result = funk(arrObj[i],1);
       }
       return result;
     } else {
-      for (var i in arr) {
-        var result = funk(arr[i],1);
+      for (var i in arrObj) {
+        var result = funk(arrObj[i],1);
       }
     } 
   },
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
-  map: function(arr, funk) {
-    console.log(arr, funk);
-    if (Array.isArray(arr) === true) {
+  map: function(arrObj, funk) {
+    // console.log(arr, funk);
+    if (Array.isArray(arrObj) === true) {
       resultArr = [];
-      for (var i=0; i<arr.length; i++) {
-        var result = funk(arr[i],1);
+      for (var i=0; i<arrObj.length; i++) {
+        var result = funk(arrObj[i],1);
         resultArr.push(result);
       }
       return resultArr;
     } else {
       resultArr = [];
-      for (var i in arr) {
-        var result = funk(arr[i],1);
+      for (var i in arrObj) {
+        var result = funk(arrObj[i],1);
         resultArr.push(result);
       }
       return resultArr;
@@ -332,8 +332,27 @@ global.bruhdash = {
 
   // iterates over elements of a collection and returns all elements that the predicate returns truthy for
   // Note: this should work for arrays and objects
-  filter: function() {
-
+  filter: function(arrObj,funk) {
+    console.log(arrObj,funk);
+    if (Array.isArray(arrObj) === true) {
+      resultArr = [];
+      for (var i=0; i<arrObj.length; i++) {
+        if (funk(arrObj[i]) == true) {
+          var result = arrObj[i];
+          resultArr.push(result);
+        }
+      }
+      return resultArr;
+    } else {
+      resultArr = [];
+      for (var i in arrObj) {
+        if (funk(arrObj[i]) == true) {
+          var result = arrObj[i];
+          resultArr.push(result);
+        }
+      }
+      return resultArr;
+    } 
   },
 
   // Reduces the collection to a value which is the accumulated result of running each element
