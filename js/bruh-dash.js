@@ -255,7 +255,7 @@ global.bruhdash = {
 
   // creates an array of elements into groups of length of specified size
   chunk: function(arr, num){
-    console.log(arr, num);
+    // console.log(arr, num);
     var newArr = [];
     var innerArr = [];
     if (arr.length > num) {
@@ -291,8 +291,18 @@ global.bruhdash = {
 
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
-  forEach: function() {
-
+  forEach: function(arr, funk) {
+    console.log(arr, funk);
+    if (Array.isArray(arr) === true) {
+      for (var i=0; i<arr.length; i++) {
+        var result = funk(arr[i],1);
+      }
+      return result;
+    } else {
+      for (var i in arr) {
+        var result = funk(arr[i],1);
+      }
+    } 
   },
 
   // creates an array of values by running each element in collection thru the iteratee
