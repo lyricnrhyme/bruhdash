@@ -254,8 +254,39 @@ global.bruhdash = {
   },
 
   // creates an array of elements into groups of length of specified size
-  chunk: function(){
-
+  chunk: function(arr, num){
+    console.log(arr, num);
+    var newArr = [];
+    var innerArr = [];
+    if (arr.length > num) {
+      if (num > 0) {
+        for (var i=0; i<arr.length; i++) {
+          if (typeof arr[i] == "number") {
+            for (var j=0; j<num; j++) {
+              innerArr = arr.splice(0,num);
+              newArr.push(innerArr);
+              innerArr = [];
+            }
+          }
+        }
+        if (arr.length%2 == 1) {
+          innerArr.push(arr[arr.length-1]);
+          newArr.push(innerArr);
+        }
+        // console.log(newArr);
+        return newArr;
+      } else {
+        return newArr;
+      }
+    } else if (arr.length == num) {
+      newArr.push(arr);
+      return newArr;
+    } else if (arr.length < num && arr.length != 0) {
+      newArr.push(arr);
+      return newArr;
+    } else {
+      return arr;
+    }
   },
 
   // iterates over elements of a collection and invokes iteratee for each element
