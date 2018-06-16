@@ -238,7 +238,7 @@ global.bruhdash = {
 
     // OR (NO ARRAY METHOD)
 
-    console.log(arr, n) // confirming parameters
+    // console.log(arr, n) // confirming parameters
         if(n===undefined){ // when n value is undefined
             newArr = [];
             for (var i=arr.length-1; i<arr[arr.length-1]; i++) {
@@ -268,24 +268,55 @@ global.bruhdash = {
   // fills elements of array with specified value from the start index
   // up to but not including the end index
   fill: function hello(arr, num, start, end) {
-      // if one of the numbers are not there,
-      if(start === undefined || end === undefined){
-        var origLength = arr.length;
-      // let origLength = original length of arr and delete the characters in arr
-      // and replace with one num
-        arr.splice(0, arr.length, num);
-      //fill the rest of orig length with num
-        for (var i=0;i<origLength-1;i++){
-          arr.splice(0, 0, num)
+    //   // if one of the numbers are not there,
+    //   if(start === undefined || end === undefined){
+    //     var origLength = arr.length;
+    //   // let origLength = original length of arr and delete the characters in arr
+    //   // and replace with one num
+    //     arr.splice(0, arr.length, num);
+    //   //fill the rest of orig length with num
+    //     for (var i=0;i<origLength-1;i++){
+    //       arr.splice(0, 0, num)
+    //     }
+    //     return arr;
+    //   }else{
+    //     arr.splice(start, end-1, num);
+    //     for (var i=0;i<end-start-1;i++){
+    //       arr.splice(start, 0, num)
+    //     }
+    //     return arr;
+    // }
+
+    // OR (NOT ARRAY METHOD)
+
+    console.log(arr, num, start, end); // confirming parameters
+    var newArr = [];
+    if (start === undefined || end === undefined) { // if start and end value are undefined
+      for (var i=0; i<arr.length; i++) {
+        if (newArr.length === 0) {
+          newArr[0] = num;
+        } else {
+          newArr[i] = num;
         }
-        return arr;
-      }else{
-        arr.splice(start, end-1, num);
-        for (var i=0;i<end-start-1;i++){
-          arr.splice(start, 0, num)
+      }
+    } else {
+      for (var i=0; i<arr.length; i++) {
+        if (i < start || i >= end) { // finding values outside of start and end values
+          if (newArr.length === 0) {
+            newArr[0] = arr[i];
+          } else {
+            newArr[i] = arr[i];
+          }
+        } else {
+          if (newArr.length === 0) {
+            newArr[0] = num;
+          } else {
+            newArr[i] = num;
+          }
         }
-        return arr;
+      }
     }
+    return newArr;
   },
 
   // removes all given values from an array
