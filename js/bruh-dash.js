@@ -48,7 +48,9 @@ global.bruhdash = {
     //   newArr.push(arr[i]);
     // }
     // return newArr;
-    // OR (NO ARRAY METHOD)
+    
+    // OR (NO ARRAY METHOD) ////////////
+    
     var newArr = [];
     for (var i=0; i<arr.length-1; i++) {
       newArr[i] = arr[i];
@@ -59,7 +61,9 @@ global.bruhdash = {
   // returns an array with all falsey values removed
   compact: function(arr) {
     // return arr.filter(Boolean);
-    // OR (NO ARRAY METHOD)
+ 
+    // OR (NO ARRAY METHOD) ////////////
+    
     var newArr = [];
     // console.log(arr); //confirms what's in the array
     for (var i=0; i<arr.length; i++) {
@@ -78,8 +82,10 @@ global.bruhdash = {
   // creates a slice of an array from the start index up to but not including the end index
   slice: function (arr, num1, num2) {
     // return arr.slice(num1, num2);
-    // OR (NO ARRAY METHOD)
-    console.log (arr, num1, num2) //confirms parameters
+    
+    // OR (NO ARRAY METHOD) ////////////
+    
+    // console.log (arr, num1, num2) //confirms parameters
     newArr = [];
     for (var i=num1; i<arr[num2-1]; i++) {
       if (newArr.length === 0) {
@@ -88,22 +94,48 @@ global.bruhdash = {
         newArr[newArr.length] = arr[i];
       }
     }
-    return newArr
+    return newArr;
   },
 
   // returns a slice of array with n elements dropped from the beginning
   drop: function(arr, n){
-    if (typeof n == "number") {
-      for (var i=0; i<n; i++) {
-        // newArr.push(arr[i]);
-        arr.shift();
+    // if (typeof n == "number") {
+    //   for (var i=0; i<n; i++) {
+    //     // newArr.push(arr[i]);
+    //     arr.shift();
+    //   }
+    //   // console.log(arr, n);
+    //   // console.log(typeof n);
+    //   return arr;
+    // }
+    // arr.shift();
+    // return arr;
+    
+    // OR (NO ARRAY METHOD) ////////////
+    
+    console.log(arr, n) // confirming parameters
+    var newArr = [];
+    if ((n)) { // when n value is a number other than 0
+      for (var i=n; i<arr.length; i++) {
+        if (newArr.length === 0) {
+          newArr[0] = arr[i];
+        } else {
+          newArr[i-n] = arr[i];
+        }
       }
-      // console.log(arr, n);
-      // console.log(typeof n);
-      return arr;
+    } else {
+      if (n === 0) { // when n value is 0
+        return arr;
+      }
+      for (var i=1; i<arr.length; i++) { // when n value is undefined
+        if (newArr.length === 0) {
+          newArr[0] = arr[i];
+        } else {
+          newArr[i-1] = arr[i];
+        }
+      }
     }
-    arr.shift();
-    return arr;
+    return newArr;
   },
 
   // returns a slice of array with n elements dropped from the end
