@@ -365,7 +365,7 @@ global.bruhdash = {
     // OR (NO ARRAY METHOD)
 
     var newArr = [];
-    for (var i=0; i<arr1.length; i++) {
+    for (var i=0; i<arr1.length; i++) { 
       for (var j=0; j<arr2.length; j++) {
         if (arr2[j] == i) {
           if (newArr.length === 0) {
@@ -382,13 +382,27 @@ global.bruhdash = {
   // creates an array excluding all the specified values
   without: function(arr, a, b) {
     // console.log(arr,a,b);
-    var newArr = []
+    // var newArr = []
+    // for (var i=0; i<arr.length; i++) {
+    //   if (arr[i] != a && arr[i] != b) {
+    //     newArr.push(arr[i]);
+    //   }
+    // }
+    // return newArr;
+
+    // OR (NO ARRAY METHOD)
+    
+    var newArr = [];
     for (var i=0; i<arr.length; i++) {
       if (arr[i] != a && arr[i] != b) {
-        newArr.push(arr[i]);
+        if (newArr.length === 0) {
+          newArr[0] = arr[i];
+        } else {
+          newArr[newArr.length] = arr[i];
+        }
       }
     }
-    return newArr;
+    return newArr
   },
 
   // returns an array with specified values excluded
