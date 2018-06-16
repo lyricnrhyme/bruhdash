@@ -43,9 +43,15 @@ global.bruhdash = {
 
   // returns an array with all elements except for the last element
   initial: function (arr) {
+    // var newArr = [];
+    // for (var i=0; i<arr.length-1; i++) {
+    //   newArr.push(arr[i]);
+    // }
+    // return newArr;
+    // OR (NO ARRAY METHOD)
     var newArr = [];
     for (var i=0; i<arr.length-1; i++) {
-      newArr.push(arr[i]);
+      newArr[i] = arr[i];
     }
     return newArr;
   },
