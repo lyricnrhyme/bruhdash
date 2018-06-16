@@ -289,7 +289,7 @@ global.bruhdash = {
 
     // OR (NOT ARRAY METHOD)
 
-    console.log(arr, num, start, end); // confirming parameters
+    // console.log(arr, num, start, end); // confirming parameters
     var newArr = [];
     if (start === undefined || end === undefined) { // if start and end value are undefined
       for (var i=0; i<arr.length; i++) {
@@ -321,13 +321,28 @@ global.bruhdash = {
 
   // removes all given values from an array
   pull: function (arr, val1, val2) {
-    // console.log(arr);
-    // console.log(val1);
-    // console.log(val2);
-    var newArr = []
+    // // console.log(arr);
+    // // console.log(val1);
+    // // console.log(val2);
+    // var newArr = []
+    // for (var i=0; i<arr.length; i++) {
+    //   if (arr[i] != val1 && arr[i] != val2) {
+    //     newArr.push(arr[i]);
+    //   }
+    // }
+    // return newArr;
+
+    // OR (NO ARRAY METHOD)
+
+    console.log(arr, val1, val2); //confirming parameters
+    var newArr = [];
     for (var i=0; i<arr.length; i++) {
-      if (arr[i] != val1 && arr[i] != val2) {
-        newArr.push(arr[i]);
+      if (arr[i] != val1 && arr[i] !=val2) { // confirming which values are not being pulled
+        if (newArr.length === 0) {
+          newArr[0] = arr[i];
+        } else {
+          newArr[newArr.length] = arr[i];
+        }
       }
     }
     return newArr;
