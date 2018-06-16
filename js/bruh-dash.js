@@ -151,7 +151,7 @@ global.bruhdash = {
 
     // OR (NO ARRAY METHOD)
 
-    console.log(arr, n) //confirm parameters
+    // console.log(arr, n) //confirm parameters
     var newArr = [];
     if (n > 0) { // for n values greater than 0
       for (var i=0; i<arr.length-n; i++) {
@@ -178,42 +178,67 @@ global.bruhdash = {
 
   // creates a slice of an array with n elements taken from the beginning
   take: function (arr, n) {
-    // console.log(arr)
-    // console.log(n);
+    // // console.log(arr)
+    // // console.log(n);
+    // var newArr = [];
+    // if (typeof n == "number") {
+    //   for (var i=0; i<n; i++) {
+    //     if (n > arr.length) {
+    //       return arr;
+    //     } else {
+    //       newArr.push(arr[i])
+    //     }
+    //   }
+    // return newArr;
+    // }
+    // return arr.slice(0,1);
+
+    // OR (NO ARRAY METHOD)
+
+    console.log(arr, n) //confirm parameters
     var newArr = [];
-    if (typeof n == "number") {
+    if (n > 0 && n < arr.length) { // when n is greater than 0 and less than array length
       for (var i=0; i<n; i++) {
-        if (n > arr.length) {
-          return arr;
+        if (newArr === 0) {
+          newArr[0] = arr[i];
         } else {
-          newArr.push(arr[i])
+          newArr[i] = arr[i];
         }
       }
-    return newArr;
+    } else if (n > arr.length) {
+      return arr;
+    } else if (n === 0) { // when n is 0
+      return newArr;
+    } else { // when n is undefined
+      newArr[0] = arr[0];
     }
-    return arr.slice(0,1);
+    return newArr;
   },
 
   // creates a slice of an array with n elements taken from the end
   takeRight: function (arr, n) {
-    // console.log(arr);
-    // console.log(n);
-    var newArr = [];
-    if (typeof n == "number") {
-      if (n == 0) {
-        return newArr;
-      } else if (n > arr.length) {
-        return arr;
-      } else {
-        for (var i=arr.length-1; i>=n-1; i--) {
-          // console.log(arr[i]);
-          newArr.unshift(arr[i]);
-        }
-        return newArr;
-      }
-    }
-    newArr.push(arr[arr.length-1]);
-    return newArr;
+    // // console.log(arr);
+    // // console.log(n);
+    // var newArr = [];
+    // if (typeof n == "number") {
+    //   if (n == 0) {
+    //     return newArr;
+    //   } else if (n > arr.length) {
+    //     return arr;
+    //   } else {
+    //     for (var i=arr.length-1; i>=n-1; i--) {
+    //       // console.log(arr[i]);
+    //       newArr.unshift(arr[i]);
+    //     }
+    //     return newArr;
+    //   }
+    // }
+    // newArr.push(arr[arr.length-1]);
+    // return newArr;
+
+    // OR (NO ARRAY METHOD)
+
+
   },
 
   // fills elements of array with specified value from the start index
