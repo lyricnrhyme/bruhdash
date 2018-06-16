@@ -113,7 +113,7 @@ global.bruhdash = {
     
     // OR (NO ARRAY METHOD) ////////////
     
-    console.log(arr, n) // confirming parameters
+    // console.log(arr, n) // confirming parameters
     var newArr = [];
     if ((n)) { // when n value is a number other than 0
       for (var i=n; i<arr.length; i++) {
@@ -140,14 +140,40 @@ global.bruhdash = {
 
   // returns a slice of array with n elements dropped from the end
   dropRight: function(arr, n) {
-    if (typeof n == "number") {
-      for (var i=0; i<n; i++) {
-        arr.pop();
+    // if (typeof n == "number") {
+    //   for (var i=0; i<n; i++) {
+    //     arr.pop();
+    //   }
+    //   return arr;
+    // }
+    // arr.pop();
+    // return arr;
+
+    // OR (NO ARRAY METHOD)
+
+    console.log(arr, n) //confirm parameters
+    var newArr = [];
+    if (n > 0) { // for n values greater than 0
+      for (var i=0; i<arr.length-n; i++) {
+        if (newArr[0] === 0) {
+          newArr[0] = arr[i];
+        } else {
+          newArr[i] = arr[i];
+        }
       }
-      return arr;
+    } else { // for n values that are 0 or undefined
+      if (n === 0) { // when n value is 0
+        return arr;
+      }
+      for (var i=0; i<arr.length-1; i++) { // when n value is undefined
+        if (newArr[0] === 0) {
+          newArr[0] = arr[i];
+        } else {
+          newArr[i] = arr[i];
+        }
+      }
     }
-    arr.pop();
-    return arr;
+    return newArr;
   },
 
   // creates a slice of an array with n elements taken from the beginning
