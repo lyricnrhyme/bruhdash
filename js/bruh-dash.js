@@ -334,7 +334,7 @@ global.bruhdash = {
 
     // OR (NO ARRAY METHOD)
 
-    console.log(arr, val1, val2); //confirming parameters
+    // console.log(arr, val1, val2); //confirming parameters
     var newArr = [];
     for (var i=0; i<arr.length; i++) {
       if (arr[i] != val1 && arr[i] !=val2) { // confirming which values are not being pulled
@@ -350,13 +350,29 @@ global.bruhdash = {
 
   // removes elements of an array corresponding to the given indices
   pullAt: function (arr1, arr2) {
-    // console.log(arr1, arr2);
-    var newArr = []
+    // // console.log(arr1, arr2);
+    // var newArr = []
+    // for (var i=0; i<arr1.length; i++) {
+    //   for (var j=0; j<arr2.length; j++) {
+    //     // console.log(arr2[j]);
+    //     if (arr2[j] == i) {
+    //       newArr.push(arr1[i])
+    //     }
+    //   }
+    // }
+    // return newArr;
+
+    // OR (NO ARRAY METHOD)
+
+    var newArr = [];
     for (var i=0; i<arr1.length; i++) {
       for (var j=0; j<arr2.length; j++) {
-        // console.log(arr2[j]);
         if (arr2[j] == i) {
-          newArr.push(arr1[i])
+          if (newArr.length === 0) {
+            newArr[0] = arr1[i];
+          } else {
+            newArr[newArr.length] = arr1[i];
+          }
         }
       }
     }
