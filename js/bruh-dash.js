@@ -58,7 +58,22 @@ global.bruhdash = {
   
   // returns an array with all falsey values removed
   compact: function(arr) {
-    return arr.filter(Boolean);
+    // return arr.filter(Boolean);
+    // OR (NO ARRAY METHOD)
+    var newArr = [];
+    console.log(arr);
+    for (var i=0; i<arr.length; i++) {
+      // if (typeof arr[i] === "number" && arr[i] > 0 || arr[i] < 0){
+      if ((arr[i])) {
+        // console.log(arr[i]);
+        if (newArr.length === 0) {
+          newArr[0] = arr[i]
+        } else {
+          newArr[newArr.length] = arr[i];
+        }
+      }
+    }
+    return newArr;
   },
 
   // creates a slice of an array from the start index up to but not including the end index
@@ -365,7 +380,7 @@ global.bruhdash = {
   // in the collection through an iteratee
   // Note: this should work for arrays and objects
   reduce: function(arrObj, funk) {
-    console.log(arrObj, funk);
+    // console.log(arrObj, funk);
     if (Array.isArray(arrObj) === true) {
       var sum = 0;
       for (var i=0; i<arrObj.length; i++) {
