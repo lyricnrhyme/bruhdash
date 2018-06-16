@@ -61,11 +61,10 @@ global.bruhdash = {
     // return arr.filter(Boolean);
     // OR (NO ARRAY METHOD)
     var newArr = [];
-    console.log(arr);
+    // console.log(arr); //confirms what's in the array
     for (var i=0; i<arr.length; i++) {
-      // if (typeof arr[i] === "number" && arr[i] > 0 || arr[i] < 0){
       if ((arr[i])) {
-        // console.log(arr[i]);
+        // console.log(arr[i]); //checks for truthys
         if (newArr.length === 0) {
           newArr[0] = arr[i]
         } else {
@@ -78,7 +77,18 @@ global.bruhdash = {
 
   // creates a slice of an array from the start index up to but not including the end index
   slice: function (arr, num1, num2) {
-    return arr.slice(num1, num2);
+    // return arr.slice(num1, num2);
+    // OR (NO ARRAY METHOD)
+    console.log (arr, num1, num2) //confirms parameters
+    newArr = [];
+    for (var i=num1; i<arr[num2-1]; i++) {
+      if (newArr.length === 0) {
+        newArr[0] = arr[i];
+      } else {
+        newArr[newArr.length] = arr[i];
+      }
+    }
+    return newArr
   },
 
   // returns a slice of array with n elements dropped from the beginning
