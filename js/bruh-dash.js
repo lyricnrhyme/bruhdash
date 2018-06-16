@@ -195,7 +195,7 @@ global.bruhdash = {
 
     // OR (NO ARRAY METHOD)
 
-    console.log(arr, n) //confirm parameters
+    // console.log(arr, n) //confirm parameters
     var newArr = [];
     if (n > 0 && n < arr.length) { // when n is greater than 0 and less than array length
       for (var i=0; i<n; i++) {
@@ -238,7 +238,29 @@ global.bruhdash = {
 
     // OR (NO ARRAY METHOD)
 
-
+    console.log(arr, n) // confirming parameters
+    if(n===undefined){
+      newArr = [];
+      for (var i=arr.length-1; i<arr[arr.length-1]; i++) {
+        if (newArr.length === 0) {
+          newArr[0] = arr[i];
+        } else {
+          newArr[newArr.length] = arr[i];
+        }
+      }
+    }else if(n===0){return [] }else if(n>arr.length){
+      return arr;
+    }else{
+      newArr = [];
+      for (var i=n-1; i<arr[arr.length-1]; i++) {
+        if (newArr.length === 0) {
+          newArr[0] = arr[i];
+        } else {
+          newArr[newArr.length] = arr[i];
+        }
+      }
+    }
+    return newArr;
   },
 
   // fills elements of array with specified value from the start index
