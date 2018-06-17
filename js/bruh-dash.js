@@ -438,17 +438,25 @@ global.bruhdash = {
         }
       }
     }
-    // console.log(uniqueArr); // checking values in uniqueArr ie. from [1,1,2,2] to [1,2]
+    console.log(uniqueArr); // checking values in uniqueArr ie. from [1,1,2,2] to [1,2]
 
-    var newArr = [];
-    for (var m=0; m<uniqueArr.length; m++) { // loops through uniqueArr
-      for (var n=0; n<arr1.length; n++) { // loops through arr1
+    var shiftArr = [];
+    for (var m=0; m<uniqueArr.length; m++) { // loops through uniqueArr [1,2]
+      for (var n=0; n<arr1.length; n++) { // loops through arr1 [1,2,3]
         if (uniqueArr[m] === arr1[n]) { // checks to see if values match
-          // for (var o=1; o<arr1.length-1; o++) { //gets rid of value in question and shifts everything one index
-          //   arr1[o-1] = arr1[o];
+          for (var o=1; o<arr1.length; o++) {
+            if (shiftArr.length === 0) {
+              shiftArr[0] = arr1[o];
+            } else {
+              shiftArr[shiftArr.length] = arr1[o];
+            }
           }
+          arr1 = shiftArr;
+          shiftArr = [];
         }
       }
+    }
+    return arr1;  
   },
 
   /*******************
@@ -487,39 +495,26 @@ global.bruhdash = {
 
   // creates an array of grouped elements in their pre-zip configuration
   unzip: function (arr) {
-    // console.log(arr);
-    //cry
-    // var newArr = [];
-    // var innerArr1 = [];
-    // var innerArr2 = [];
-    // for (var i=0; i<arr.length; i++) {
-    //   innerArr1.push(arr[i][0]);
-    //   innerArr2.push(arr[i][1]);
+    // var originalArr = [];
+    // var resultArr = [];
+    // for(var i=0;i<arr.length;i++){
+    //   originalArr.push(arr[i]);
     // }
-    // newArr.push(innerArr1);
-    // newArr.push(innerArr2);
-    // return newArr;
-    // // console.log(newArr);
-    // // works on only this test instance
-    // OR
-    var originalArr = [];
-    var resultArr = [];
-    for(var i=0;i<arr.length;i++){
-      originalArr.push(arr[i]);
-    }
-    while((originalArr[0].length)>0){
-      var testArr = [];
-      //console.log(originalArr);
-      for(var i=0;i<originalArr.length;i++){
-        var toPush = originalArr[i].shift();
-        //console.log(toPush);
-        testArr.push(toPush);
-        //console.log(testArr);
-      }
-      resultArr.push(testArr);
-    }
-    //console.log(originalArr.length);
-    return resultArr;
+    // while((originalArr[0].length)>0){
+    //   var testArr = [];
+    //   //console.log(originalArr);
+    //   for(var i=0;i<originalArr.length;i++){
+    //     var toPush = originalArr[i].shift();
+    //     //console.log(toPush);
+    //     testArr.push(toPush);
+    //     //console.log(testArr);
+    //   }
+    //   resultArr.push(testArr);
+    // }
+    // //console.log(originalArr.length);
+    // return resultArr;
+
+    // OR (NO ARRAY METHOD)
   },
 
   // creates an array of elements into groups of length of specified size
