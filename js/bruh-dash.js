@@ -408,8 +408,47 @@ global.bruhdash = {
   // returns an array with specified values excluded
   difference: function(arr1, arr2) {
     // 
-    var newArr = arr1.filter(num => !arr2.includes(num));
-    return newArr;
+    // var newArr = arr1.filter(num => !arr2.includes(num));
+    // return newArr;
+
+    // OR (NO ARRAY METHOD)
+
+    console.log(arr1, arr2);
+    var dupArr = [];
+    for (var i=0; i<arr1.length; i++) { // for loop that checks for identical values
+      for (var j=0; j<arr2.length; j++) { // for loop that pushes values into dupArr
+        if (arr1[i] === arr2[j]) {
+          if (dupArr.length === 0) {
+            dupArr[0] = arr1[i];
+          } else {
+            dupArr[dupArr.length] = arr1[i];
+          }
+        }
+      }
+    }
+    // console.log(dupArr); // checking values in dupArr ie. [1,1,2,2]
+
+    var uniqueArr = [];
+    for (var k=0; k<dupArr.length; k++) { // removing duplicates from dupArr and putting unique values in uniqueArr
+      if (dupArr[k] !== dupArr[k+1]) {
+        if (uniqueArr.length === 0) {
+          uniqueArr[0] = dupArr[k];
+        } else {
+          uniqueArr[uniqueArr.length] = dupArr[k];
+        }
+      }
+    }
+    // console.log(uniqueArr); // checking values in uniqueArr ie. from [1,1,2,2] to [1,2]
+
+    var newArr = [];
+    for (var m=0; m<uniqueArr.length; m++) { // loops through uniqueArr
+      for (var n=0; n<arr1.length; n++) { // loops through arr1
+        if (uniqueArr[m] === arr1[n]) { // checks to see if values match
+          // for (var o=1; o<arr1.length-1; o++) { //gets rid of value in question and shifts everything one index
+          //   arr1[o-1] = arr1[o];
+          }
+        }
+      }
   },
 
   /*******************
@@ -418,14 +457,30 @@ global.bruhdash = {
 
   // creates an array of grouped elements
   zip: function (arr1, arr2) {
-    // console.log(arr1, arr2);
+    // // console.log(arr1, arr2);
+    // var newArr = [];
+    // var innerArr = [];
+    // for (var i=0; i<arr1.length; i++) {
+    //   innerArr.push(arr1[i]);
+    //   innerArr.push(arr2[i]);
+    //   newArr.push(innerArr);
+    //   innerArr = [];
+    // }
+    // return newArr;
+
+    // OR (NO ARRAY METHOD)
+
     var newArr = [];
     var innerArr = [];
     for (var i=0; i<arr1.length; i++) {
-      innerArr.push(arr1[i]);
-      innerArr.push(arr2[i]);
-      newArr.push(innerArr);
-      innerArr = [];
+        innerArr[0] = arr1[i];
+        innerArr[1] = arr2[i];
+        if (newArr.length === 0) {
+          newArr[0] = innerArr;
+        } else {
+          newArr[newArr.length] = innerArr;
+        }
+        innerArr = [];
     }
     return newArr;
   },
