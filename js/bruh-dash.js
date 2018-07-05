@@ -413,7 +413,7 @@ global.bruhdash = {
 
     // OR (NO ARRAY METHOD)
 
-    console.log(arr1, arr2);
+    // console.log(arr1, arr2);
     var dupArr = [];
     for (var i=0; i<arr1.length; i++) { // for loop that checks for identical values
       for (var j=0; j<arr2.length; j++) { // for loop that pushes values into dupArr
@@ -438,21 +438,21 @@ global.bruhdash = {
         }
       }
     }
-    console.log(uniqueArr); // checking values in uniqueArr ie. from [1,1,2,2] to [1,2]
+    // console.log(uniqueArr); // checking values in uniqueArr ie. from [1,1,2,2] to [1,2]
 
     var shiftArr = [];
     for (var m=0; m<uniqueArr.length; m++) { // loops through uniqueArr [1,2]
       for (var n=0; n<arr1.length; n++) { // loops through arr1 [1,2,3]
         if (uniqueArr[m] === arr1[n]) { // checks to see if values match
-          for (var o=1; o<arr1.length; o++) {
-            if (shiftArr.length === 0) {
-              shiftArr[0] = arr1[o];
-            } else {
+          for (var o=1; o<arr1.length; o++) { // initiating shift
+            // if (shiftArr.length === 0) { 
+            //   shiftArr[0] = arr1[o];
+            // } else {
               shiftArr[shiftArr.length] = arr1[o];
-            }
-          }
-          arr1 = shiftArr;
-          shiftArr = [];
+            // }
+          } //shiftArr = arr1.shift()
+          arr1 = shiftArr; // changes arr1 like arr1.shift()
+          shiftArr = []; // restarts shiftArr for next instance in for loop
         }
       }
     }
@@ -515,42 +515,138 @@ global.bruhdash = {
     // return resultArr;
 
     // OR (NO ARRAY METHOD)
+
+    var originalArr = [];
+    var resultArr = [];
+    for (var i=0; i<arr.length; i++) {
+      if (originalArr.length === 0) {
+        originalArr[0] = arr[i];
+      } else {
+        originalArr[originalArr.length] = arr[i];
+      }
+    }
+
+    while ((originalArr[0].length) > 0) {
+      var testArr = [];
+      for (var i=0; i<originalArr.length; i++) {
+        var shiftArr = [];
+        var toPush = originalArr[i][0];
+        for (var j=1; j<originalArr[i].length; j++) {
+          if (shiftArr.length === 0) {
+            shiftArr[0] = originalArr[i][j];
+          } else {
+            shiftArr[shiftArr.length] = originalArr[i][j];
+          }
+        }
+        originalArr[i] = shiftArr;
+        shiftArr = [];
+        if (testArr.length === 0) {
+          testArr[0] = toPush;
+        } else {
+          testArr[testArr.length] = toPush;
+        }
+      }
+      if (resultArr.length === 0) {
+        resultArr[0] = testArr;
+      } else {
+        resultArr[resultArr.length] = testArr;
+      }
+    }
+    return resultArr;
   },
 
   // creates an array of elements into groups of length of specified size
   chunk: function(arr, num){
     // console.log(arr, num);
-    var newArr = [];
-    var innerArr = [];
-    if (arr.length > num) {
-      if (num > 0) {
-        for (var i=0; i<arr.length; i++) {
-          if (typeof arr[i] == "number") {
-            for (var j=0; j<num; j++) {
-              innerArr = arr.splice(0,num);
-              newArr.push(innerArr);
-              innerArr = [];
-            }
-          }
-        }
-        if (arr.length%2 == 1) {
-          innerArr.push(arr[arr.length-1]);
-          newArr.push(innerArr);
-        }
-        // console.log(newArr);
-        return newArr;
-      } else {
-        return newArr;
-      }
-    } else if (arr.length == num) {
-      newArr.push(arr);
-      return newArr;
-    } else if (arr.length < num && arr.length != 0) {
-      newArr.push(arr);
-      return newArr;
-    } else {
-      return arr;
-    }
+    // var newArr = [];
+    // var innerArr = [];
+    // if (arr.length > num) {
+    //   if (num > 0) {
+    //     for (var i=0; i<arr.length; i++) {
+    //       if (typeof arr[i] == "number") {
+    //         for (var j=0; j<num; j++) {
+    //           innerArr = arr.splice(0,num);
+    //           newArr.push(innerArr);
+    //           innerArr = [];
+    //         }
+    //       }
+    //     }
+    //     if (arr.length%2 == 1) { 
+    //       innerArr.push(arr[arr.length-1]);
+    //       newArr.push(innerArr);
+    //     }
+    //     // console.log(newArr);
+    //     return newArr;
+    //   } else {
+    //     return newArr;
+    //   }
+    // } else if (arr.length == num) {
+    //   newArr.push(arr);
+    //   return newArr;
+    // } else if (arr.length < num && arr.length != 0) {
+    //   newArr.push(arr);
+    //   return newArr;
+    // } else {
+    //   return arr;
+    // }
+
+    // OR (NO ARRAY METHOD)
+
+          var originalArr = [];
+          var resultArr = [];
+          var testArr = [];
+          var shiftArr = [];
+          var endArr = [];
+          if(arr.length === 0 || num === 0){
+            return [];
+          }else{
+            for(var i=0;i<arr.length;i++){
+              if(originalArr.length === 0){
+                originalArr[0] = arr[i]
+              }else{
+                originalArr[originalArr.length] = arr[i]
+              }
+            };
+            while(originalArr.length>0){
+              if(testArr.length === num){
+                  if(resultArr.length===0){
+                    resultArr[0]=testArr
+                  }else{
+                    resultArr[resultArr.length]=testArr
+                  }
+                testArr = [];
+              } else {
+                if(testArr.length === 0){
+                  testArr[0] = originalArr[0]
+                }else{
+                  testArr[testArr.length] = originalArr[0];
+                };
+                //Then take original Arr and subtract the first value and repeat the process
+                for(var t=1;t<originalArr.length;t++){
+                  if(shiftArr.length === 0){
+                    shiftArr[0] = originalArr[t]
+                  }else{
+                    shiftArr[shiftArr.length] = originalArr[t]
+                  }
+                };
+                originalArr = shiftArr;
+                shiftArr = [];
+              }
+            }
+          }
+          for(var w=0;w<testArr.length;w++){
+            if(endArr.length === 0){
+              endArr[0] = testArr[w]
+            }else{
+              endArr[endArr.length] = testArr[w]
+            }
+          }
+          if(resultArr.length === 0){
+            resultArr[0]= endArr;
+          }else{
+            resultArr[resultArr.length] = endArr;
+          }
+          return resultArr;
   },
 
   // iterates over elements of a collection and invokes iteratee for each element
