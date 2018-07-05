@@ -663,17 +663,30 @@ global.bruhdash = {
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
   forEach: function(arrObj, funk) {
-    // console.log(arr, funk);
-    if (Array.isArray(arrObj) === true) {
+    // // console.log(arr, funk);
+    // if (Array.isArray(arrObj) === true) {
+    //   for (var i=0; i<arrObj.length; i++) {
+    //     var result = funk(arrObj[i],1);
+    //   }
+    //   return result;
+    // } else {
+    //   for (var i in arrObj) {
+    //     var result = funk(arrObj[i],1);
+    //   }
+    // } 
+
+    // OR (NO ARRAY METHOD)
+
+    if (typeof arrObj === "object") {
+      for (var i in arrObj) {
+        var result = funk(arrObj[i], 1);
+      }
+    } else {
       for (var i=0; i<arrObj.length; i++) {
-        var result = funk(arrObj[i],1);
+        var result = funk(arrObj[i], 1);
       }
       return result;
-    } else {
-      for (var i in arrObj) {
-        var result = funk(arrObj[i],1);
-      }
-    } 
+    }
   },
 
   // creates an array of values by running each element in collection thru the iteratee
