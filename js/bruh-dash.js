@@ -692,22 +692,48 @@ global.bruhdash = {
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
   map: function(arrObj, funk) {
-    // console.log(arr, funk);
-    if (Array.isArray(arrObj) === true) {
+    // // console.log(arr, funk);
+    // if (Array.isArray(arrObj) === true) {
+    //   resultArr = [];
+    //   for (var i=0; i<arrObj.length; i++) {
+    //     var result = funk(arrObj[i],1);
+    //     resultArr.push(result);
+    //   }
+    //   return resultArr;
+    // } else {
+    //   resultArr = [];
+    //   for (var i in arrObj) {
+    //     var result = funk(arrObj[i],1);
+    //     resultArr.push(result);
+    //   }
+    //   return resultArr;
+    // } 
+
+    // OR (NO ARRAY METHOD)
+
+    if (typeof arrObj === "object") {
       resultArr = [];
-      for (var i=0; i<arrObj.length; i++) {
-        var result = funk(arrObj[i],1);
-        resultArr.push(result);
+      for (var i in arrObj) {
+        var result = funk(arrObj[i], 1);
+        if (resultArr.length === 0) {
+          resultArr[0] = result;
+        } else {
+          resultArr[resultArr.length] = result;
+        }
       }
       return resultArr;
     } else {
       resultArr = [];
-      for (var i in arrObj) {
-        var result = funk(arrObj[i],1);
-        resultArr.push(result);
+      for (var i=0; i<arrObj.length; i++) {
+        var result = funk(arrObj[i], 1);
+        if (resultArr.length === 0) {
+          resultArr[0] = result;
+        } else {
+          resultArr[resultArr.length] = result;
+        }
       }
       return resultArr;
-    } 
+    }
   },
 
   /*************************
