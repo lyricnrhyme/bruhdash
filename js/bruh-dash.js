@@ -744,25 +744,55 @@ global.bruhdash = {
   // Note: this should work for arrays and objects
   filter: function(arrObj,funk) {
     // console.log(arrObj,funk);
-    if (Array.isArray(arrObj) === true) {
+    // if (Array.isArray(arrObj) === true) {
+    //   resultArr = [];
+    //   for (var i=0; i<arrObj.length; i++) {
+    //     if (funk(arrObj[i]) == true) {
+    //       var result = arrObj[i];
+    //       resultArr.push(result);
+    //     }
+    //   }
+    //   return resultArr;
+    // } else {
+    //   resultArr = [];
+    //   for (var i in arrObj) {
+    //     if (funk(arrObj[i]) == true) {
+    //       var result = arrObj[i];
+    //       resultArr.push(result);
+    //     }
+    //   }
+    //   return resultArr;
+    // } 
+
+    //OR (NO ARRAY METHOD)
+
+    if (typeof arrObj === "object") {
       resultArr = [];
-      for (var i=0; i<arrObj.length; i++) {
-        if (funk(arrObj[i]) == true) {
+      for (var i in arrObj) {
+        if (funk(arrObj[i]) === true) {
           var result = arrObj[i];
-          resultArr.push(result);
+          if (resultArr.length === 0) {
+            resultArr[0] = result;
+          } else {
+            resultArr[resultArr.length] = result;
+          }
         }
       }
       return resultArr;
     } else {
       resultArr = [];
-      for (var i in arrObj) {
-        if (funk(arrObj[i]) == true) {
+      for (var i=0; i<arrObj.length; i++) {
+        if (funk(arrObj[i]) === true) {
           var result = arrObj[i];
-          resultArr.push(result);
+          if (resultArr.length === 0) {
+            resultArr[0] = result;
+          } else {
+            resultArr[resultArr.length] = result;
+          }
         }
       }
       return resultArr;
-    } 
+    }
   },
 
   // Reduces the collection to a value which is the accumulated result of running each element
