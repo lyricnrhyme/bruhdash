@@ -800,7 +800,25 @@ global.bruhdash = {
   // Note: this should work for arrays and objects
   reduce: function(arrObj, funk) {
     // console.log(arrObj, funk);
-    if (Array.isArray(arrObj) === true) {
+    // if (Array.isArray(arrObj) === true) {
+    //   var sum = 0;
+    //   for (var i=0; i<arrObj.length; i++) {
+    //     sum += arrObj[i];
+    //     var result = funk(sum,0);
+    //   }
+    //   return result;
+    // } else {
+    //   var sum = 0;
+    //   for (var i in arrObj) {
+    //     sum += arrObj[i]
+    //     var result = funk(sum,0);
+    //   }
+    //   return result;
+    // }
+    
+    //OR (NO ARRAY METHOD)
+
+    if (typeof arrObj !== "object") {
       var sum = 0;
       for (var i=0; i<arrObj.length; i++) {
         sum += arrObj[i];
@@ -814,6 +832,6 @@ global.bruhdash = {
         var result = funk(sum,0);
       }
       return result;
-    } 
+    }
   }
 };
