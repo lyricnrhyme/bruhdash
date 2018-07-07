@@ -413,50 +413,103 @@ global.bruhdash = {
 
     // OR (NO ARRAY METHOD)
 
-    // console.log(arr1, arr2);
-    var dupArr = [];
-    for (var i=0; i<arr1.length; i++) { // for loop that checks for identical values
-      for (var j=0; j<arr2.length; j++) { // for loop that pushes values into dupArr
-        if (arr1[i] === arr2[j]) {
-          if (dupArr.length === 0) {
-            dupArr[0] = arr1[i];
-          } else {
-            dupArr[dupArr.length] = arr1[i];
-          }
-        }
+      //****SORT ARR1****//
+  var countArr1 = arr1.length-1;
+  var swapArr1 = 0;
+  for (var i=0; i<countArr1; i++) {
+    for (var j=0; j<countArr1; j++) {
+      if (arr1[j] > arr1[j+1]) {
+        swapArr1 = arr1[j+1];
+        arr1[j+1] = arr1[j];
+        arr1[j] = swapArr1;
       }
     }
-    // console.log(dupArr); // checking values in dupArr ie. [1,1,2,2]
-
-    var uniqueArr = [];
-    for (var k=0; k<dupArr.length; k++) { // removing duplicates from dupArr and putting unique values in uniqueArr
-      if (dupArr[k] !== dupArr[k+1]) {
-        if (uniqueArr.length === 0) {
-          uniqueArr[0] = dupArr[k];
+  }
+  
+  //****REMOVE DUPES FROM ARR1****//
+  var uniqueArr1 = [];
+  for (var k=0; k<arr1.length; k++) {
+    if (arr1[k] !== arr1[k+1]) {
+      if (uniqueArr1.length === 0) {
+        uniqueArr1[0] = arr1[k];
+      } else {
+        uniqueArr1[uniqueArr1.length] = arr1[k];
+      }
+    }
+  }
+  arr1 = uniqueArr1;
+  
+  //****IDENTIFY SIMILAR VALUES IN ARR2****//
+  var sameVal = [];
+  for (var l=0; l<arr1.length; l++) {
+    for (var m=0; m<arr2.length; m++) {
+      if (arr1[l] === arr2[m]) {
+        if (sameVal.length === 0) {
+          sameVal[0] = arr2[m];
         } else {
-          uniqueArr[uniqueArr.length] = dupArr[k];
+          sameVal[sameVal.length] = arr2[m];
         }
       }
     }
-    // console.log(uniqueArr); // checking values in uniqueArr ie. from [1,1,2,2] to [1,2]
-
-    var shiftArr = [];
-    for (var m=0; m<uniqueArr.length; m++) { // loops through uniqueArr [1,2]
-      for (var n=0; n<arr1.length; n++) { // loops through arr1 [1,2,3]
-        if (uniqueArr[m] === arr1[n]) { // checks to see if values match
-          for (var o=1; o<arr1.length; o++) { // initiating shift
-            // if (shiftArr.length === 0) { 
-            //   shiftArr[0] = arr1[o];
-            // } else {
-              shiftArr[shiftArr.length] = arr1[o];
-            // }
-          } //shiftArr = arr1.shift()
-          arr1 = shiftArr; // changes arr1 like arr1.shift()
-          shiftArr = []; // restarts shiftArr for next instance in for loop
-        }
+  }
+  arr2 = sameVal;
+  
+  //****REMOVE DUPES FROM ARR2****//
+  var uniqueArr2 = [];
+  for (var n=0; n<arr2.length; n++) {
+    if (arr2[n] !== arr2[n+1]) {
+      if (uniqueArr2.length === 0) {
+        uniqueArr2[0] = arr2[n];
+      } else {
+        uniqueArr2[uniqueArr2.length] = arr2[n];
       }
     }
-    return arr1;  
+  }
+  arr2 = uniqueArr2;
+  
+  //****REMOVE SHARED VALUES IN ARR1 WITH ARR2****//
+  var shiftArr = [];
+  var resultArr = [];
+  while (arr1.length > 0) {
+    if (arr1[0] === arr2[0]) {
+      for (var o=1; o<arr1.length; o++) { //SHIFT ARR1
+        if (shiftArr.length === 0) {
+          shiftArr[0] = arr1[o];
+        } else {
+          shiftArr[shiftArr.length] = arr1[o];
+        }
+      }
+      arr1 = shiftArr;
+      shiftArr = [];
+      
+      for (var p=1; p<arr2.length; p++) { //SHIFT ARR2
+        if (shiftArr.length === 0) {
+          shiftArr[0] = arr2[p];
+        } else {
+          shiftArr[shiftArr.length] = arr2[p];
+        }
+      }
+      arr2 = shiftArr;
+      shiftArr = [];
+    } else {
+      if (resultArr.length === 0) { //PUSH UNIQUE VALUE TO RESULTARR
+        resultArr[0] = arr1[0];
+      } else {
+        resultArr[resultArr.length] = arr1[0];
+      }
+      
+      for (var q=1; q<arr1.length; q++) { //SHIFT ARR1
+        if (shiftArr.length === 0) {
+          shiftArr[0] = arr1[q];
+        } else {
+          shiftArr[shiftArr.length] = arr1[q];
+        }
+      }
+      arr1 = shiftArr;
+      shiftArr = [];
+    }
+  }
+  return resultArr;
   },
 
   /*******************
